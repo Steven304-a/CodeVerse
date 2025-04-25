@@ -515,3 +515,19 @@ nav a:hover::after {
     text-shadow: none;
   }
 }
+.logo {
+  height: 50px; /* يمكنك تعديل الارتفاع حسب احتياجك */
+  width: 50px;  /* يمكنك تعديل العرض حسب احتياجك */
+}
+
+.logo-image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 50%; /* إذا كنت تريدها دائرية */
+  transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
+}
