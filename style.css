@@ -540,3 +540,64 @@ nav a:hover::after {
     object-fit: cover;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
+
+/* ... كل الكود الحالي الموجود لديك ... */
+
+/* ===================== */
+/* LOGO RESPONSIVE STYLES */
+/* ===================== */
+.logo-container {
+    width: clamp(50px, 6vw, 70px);
+    height: clamp(50px, 6vw, 70px);
+    min-width: 50px;
+    min-height: 50px;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background: var(--glass);
+    backdrop-filter: blur(5px);
+}
+
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.logo-link:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--primary);
+    border-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .logo-container {
+        width: 50px;
+        height: 50px;
+    }
+    
+    header {
+        padding: 15px 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .logo-link {
+        border-width: 1px;
+    }
+}
