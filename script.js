@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     themeToggle.addEventListener('click', () => {
         html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
         themeToggle.innerHTML = html.dataset.theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        localStorage.setItem('theme', html.dataset.theme);
         
         // Update glass card colors for light theme
         if (html.dataset.theme === 'light') {
@@ -19,11 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.documentElement.style.setProperty('--glass', 'rgba(255, 255, 255, 0.05)');
         }
     });
-    
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    html.dataset.theme = savedTheme;
-    themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
     
     // Typing Animation
     const typingText = document.getElementById('typing-text');
@@ -89,21 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Here you would normally send the form data
-            // For demo purposes, we'll just show an alert
             alert('Thank you for your message! I will get back to you soon.');
-            
-            // Redirect to thank you page
-            window.location.href = "thank-you.html";
+            this.reset();
         });
     }
-    
-    // Download CV button
-    document.getElementById('download-cv').addEventListener('click', function(e) {
-        e.preventDefault();
-        // Replace with actual CV file path
-        window.open('path-to-your-cv.pdf', '_blank');
-    });
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
