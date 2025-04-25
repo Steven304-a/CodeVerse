@@ -219,75 +219,35 @@
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        themeToggle.addEventListener('click', () => {
-            html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-            themeToggle.innerHTML = html.dataset.theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        });
-        
-        // Typing Animation
-        const typingText = document.getElementById('typing-text');
-        const text = "Steven Emad";
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                typingText.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 150);
-            }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>// استبدل كل كود JavaScript بهذا الكود المحسن
+<script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+        html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+        themeToggle.innerHTML = html.dataset.theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    });
+    
+    // Typing Animation
+    const typingText = document.getElementById('typing-text');
+    const text = "Steven Emad";
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < text.length) {
+            typingText.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 150);
         }
-        
-        typeWriter();
-        
-        // Initialize GSAP animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Animate all sections on scroll
-        gsap.utils.toArray('.section').forEach(section => {
-            gsap.from(section, {
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 0,
-                y: 50,
-                duration: 1
-            });
-        });
-        
-        // Animate project cards with stagger
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.6,
-                delay: i * 0.1
-            });
-        });
-        
-        // Floating animation for tech icons
-        gsap.to('.icon-container', {
-            y: 10,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-
-
-        // Global Animation Controller
+    }
+    
+    typeWriter();
+    
+    // GSAP Advanced Animations
+    gsap.registerPlugin(ScrollTrigger);
+    
     document.addEventListener('DOMContentLoaded', () => {
         // Scroll Animation Trigger
         const animateOnScroll = () => {
@@ -345,58 +305,54 @@
             document.body.style.transition = 'opacity 1s ease';
             document.body.style.opacity = '1';
         }, 100);
-    });
-
-    // GSAP Advanced Animations
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Section Staggered Animation
-    gsap.utils.toArray('section').forEach(section => {
-        gsap.from(section, {
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            ease: "power3.out"
+        
+        // Section Staggered Animation
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power3.out"
+            });
         });
-    });
 
-    // Floating Elements
-    gsap.utils.toArray('.icon-container, .project-card').forEach(el => {
-        gsap.to(el, {
-            y: 10,
-            duration: 2 + Math.random(),
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
+        // Floating Elements
+        gsap.utils.toArray('.icon-container, .project-card').forEach(el => {
+            gsap.to(el, {
+                y: 10,
+                duration: 2 + Math.random(),
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
         });
-    });
 
-    // Text Glitch Effect (Optional)
-    const glitchText = document.querySelectorAll('.neon-text');
-    glitchText.forEach(text => {
-        setInterval(() => {
-            if (Math.random() > 0.9) {
-                text.style.textShadow = `
-                    0 0 5px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
-                    0 0 10px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
-                    0 0 20px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'}
-                `;
-                setTimeout(() => {
+        // Text Glitch Effect (Optional)
+        const glitchText = document.querySelectorAll('.neon-text');
+        glitchText.forEach(text => {
+            setInterval(() => {
+                if (Math.random() > 0.9) {
                     text.style.textShadow = `
-                        0 0 5px var(--primary),
-                        0 0 10px var(--primary),
-                        0 0 20px var(--primary)
+                        0 0 5px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
+                        0 0 10px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
+                        0 0 20px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'}
                     `;
-                }, 100);
-            }
-        }, 3000);
+                    setTimeout(() => {
+                        text.style.textShadow = `
+                            0 0 5px var(--primary),
+                            0 0 10px var(--primary),
+                            0 0 20px var(--primary)
+                        `;
+                    }, 100);
+                }
+            }, 3000);
+        });
     });
-
-    </script>
+</script>
 </body>
 </html>
