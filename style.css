@@ -516,18 +516,27 @@ nav a:hover::after {
   }
 }
 .logo {
-  height: 50px; /* يمكنك تعديل الارتفاع حسب احتياجك */
-  width: 50px;  /* يمكنك تعديل العرض حسب احتياجك */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .logo-image {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-  border-radius: 50%; /* إذا كنت تريدها دائرية */
-  transition: transform 0.3s ease;
-}
-
-.logo-image:hover {
-  transform: scale(1.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
