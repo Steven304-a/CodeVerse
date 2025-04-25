@@ -1,4 +1,8 @@
 /* أضف في بداية CSS */
+
+html {
+    scroll-behavior: smooth;
+}
 * {
     will-change: transform, opacity;
 }
@@ -804,4 +808,15 @@ header.scrolled {
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     width: 0%;
     transition: width 0.1s ease;
+}
+
+/* أضف في نهاية الملف */
+@media (hover: none) {
+    [data-hover-animate] {
+        transform: none !important;
+    }
+    
+    .logo-link:hover {
+        transform: none !important;
+    }
 }
