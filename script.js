@@ -1,11 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    themeToggle.addEventListener('click', () => {
-        html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
-        themeToggle.innerHTML = html.dataset.theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+
+// Load saved theme or default to dark
+const currentTheme = localStorage.getItem('theme') || 'dark';
+html.dataset.theme = currentTheme;
+themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+// Toggle theme function
+themeToggle.addEventListener('click', () => {
+    const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+});
         
         // Update glass card colors for light theme
         if (html.dataset.theme === 'light') {
