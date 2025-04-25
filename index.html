@@ -285,6 +285,118 @@
             yoyo: true,
             ease: "sine.inOut"
         });
+
+
+        // Global Animation Controller
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll Animation Trigger
+        const animateOnScroll = () => {
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight * 0.8;
+                if (isVisible) el.closest('section').classList.add('animate-in');
+            });
+        };
+
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            animateOnScroll();
+            updateProgressBar();
+        });
+
+        // Initialize animations
+        animateOnScroll();
+
+        // Add hover animations dynamically
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.setAttribute('data-hover-animate', 'float');
+        });
+
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.setAttribute('data-hover-animate', 'grow');
+        });
+
+        // Scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.className = 'progress-container';
+        progressBar.innerHTML = '<div class="progress-bar"></div>';
+        document.body.prepend(progressBar);
+
+        const updateProgressBar = () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        };
+
+        // Interactive background
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            document.querySelector('.animated-bg').style.transform = 
+                `scale(1.05) translate(${x * 20}px, ${y * 20}px)`;
+        });
+
+        // Page load animation
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 1s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+
+    // GSAP Advanced Animations
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Section Staggered Animation
+    gsap.utils.toArray('section').forEach(section => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out"
+        });
+    });
+
+    // Floating Elements
+    gsap.utils.toArray('.icon-container, .project-card').forEach(el => {
+        gsap.to(el, {
+            y: 10,
+            duration: 2 + Math.random(),
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    });
+
+    // Text Glitch Effect (Optional)
+    const glitchText = document.querySelectorAll('.neon-text');
+    glitchText.forEach(text => {
+        setInterval(() => {
+            if (Math.random() > 0.9) {
+                text.style.textShadow = `
+                    0 0 5px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
+                    0 0 10px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'},
+                    0 0 20px ${Math.random() > 0.5 ? '#ff00e4' : '#00f7ff'}
+                `;
+                setTimeout(() => {
+                    text.style.textShadow = `
+                        0 0 5px var(--primary),
+                        0 0 10px var(--primary),
+                        0 0 20px var(--primary)
+                    `;
+                }, 100);
+            }
+        }, 3000);
+    });
+
     </script>
 </body>
 </html>
