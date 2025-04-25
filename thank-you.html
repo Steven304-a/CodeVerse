@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You | Steven Emad</title>
-    <meta http-equiv="refresh" content="5;url=https://codeverse.icu">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta http-equiv="refresh" content="5;url=https://yourdomain.com">
     <style>
         body {
             font-family: 'Rajdhani', sans-serif;
@@ -16,77 +15,32 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            margin: 0;
-            padding: 20px;
         }
         .container {
             max-width: 600px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 247, 255, 0.1);
         }
         h1 {
             color: #00f7ff;
-            font-family: 'Orbitron', sans-serif;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-        }
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        .countdown {
-            color: #00f7ff;
-            font-weight: bold;
-            font-size: 1.5rem;
             margin-bottom: 20px;
         }
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #00f7ff, #ff00e4);
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00f7ff;
             color: #0a0a1a;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Thank You! <i class="fas fa-check-circle"></i></h1>
-        <p>Your message has been sent successfully. I'll get back to you soon.</p>
-        <div class="countdown" id="countdown">Redirecting in 5 seconds...</div>
-        <a href="https://codeverse.icu" class="btn">Return Now</a>
+        <h1>Thank You!</h1>
+        <p>Your message has been sent successfully. I'll contact you soon.</p>
+        <p>You will be redirected automatically in 5 seconds...</p>
+        <a href="https://yourdomain.com" class="btn">Return Now</a>
     </div>
-
-    <script>
-        // Countdown timer
-        let seconds = 5;
-        const countdownElement = document.getElementById('countdown');
-        
-        const countdown = setInterval(() => {
-            seconds--;
-            countdownElement.textContent = `Redirecting in ${seconds} seconds...`;
-            
-            if (seconds <= 0) {
-                clearInterval(countdown);
-                window.location.href = "https://codeverse.icu";
-            }
-        }, 1000);
-    </script>
-    
-    <!-- Font Awesome for the checkmark icon -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>
