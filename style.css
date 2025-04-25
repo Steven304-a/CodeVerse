@@ -1,3 +1,9 @@
+/* أضف في بداية CSS */
+* {
+    will-change: transform, opacity;
+}
+
+
 :root {
   --primary: #00f7ff;
   --secondary: #ff00e4;
