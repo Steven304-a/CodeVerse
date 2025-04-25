@@ -541,43 +541,76 @@ nav a:hover::after {
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ... كل الكود الحالي الموجود لديك ... */
-
 /* ===================== */
-/* LOGO RESPONSIVE STYLES */
+/* ENHANCED LOGO STYLES */
 /* ===================== */
 .logo-container {
-    width: clamp(50px, 6vw, 70px);
-    height: clamp(50px, 6vw, 70px);
-    min-width: 50px;
-    min-height: 50px;
+    width: clamp(50px, 6vw, 80px);
+    height: clamp(50px, 6vw, 80px);
+    min-width: 40px;
+    min-height: 40px;
     position: relative;
-    z-index: 10;
+    z-index: 100;
+    flex-shrink: 0;
 }
 
 .logo-link {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    background: var(--glass);
-    backdrop-filter: blur(5px);
+    border: 2px solid var(--primary);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(0, 247, 255, 0.1);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 247, 255, 0.1);
 }
 
 .logo-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    padding: 5px;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    padding: 2px;
+    filter: drop-shadow(0 0 5px rgba(0, 247, 255, 0.5));
+    transition: transform 0.3s ease;
 }
 
+/* Hover & Active Effects */
 .logo-link:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 0 25px var(--primary);
+    border-color: var(--secondary);
+}
+
+.logo-link:active {
+    transform: scale(0.95);
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 247, 255, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 247, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 247, 255, 0); }
+}
+
+.logo-link:hover .logo-image {
     transform: scale(1.1);
-    box-shadow: 0 0 20px var(--primary);
-    border-color: var(--primary);
+    filter: drop-shadow(0 0 8px rgba(0, 247, 255, 0.8));
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .logo-container {
+        width: clamp(45px, 5vw, 60px);
+        height: clamp(45px, 5vw, 60px);
+    }
+    
+    .logo-link {
+        border-width: 1.5px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -586,18 +619,35 @@ nav a:hover::after {
         height: 50px;
     }
     
-    header {
-        padding: 15px 5%;
+    .logo-link {
+        backdrop-filter: blur(5px);
     }
 }
 
 @media (max-width: 480px) {
     .logo-container {
-        width: 45px;
-        height: 45px;
+        width: 42px;
+        height: 42px;
     }
     
     .logo-link {
         border-width: 1px;
+        box-shadow: 0 2px 8px rgba(0, 247, 255, 0.1);
     }
+    
+    .logo-image {
+        width: 85%;
+        height: 85%;
+    }
+}
+
+/* Light Theme Adjustments */
+[data-theme="light"] .logo-link {
+    border-color: var(--primary);
+    background: rgba(0, 102, 204, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="light"] .logo-image {
+    filter: drop-shadow(0 0 3px rgba(0, 102, 204, 0.3));
 }
