@@ -479,3 +479,39 @@ nav a:hover::after {
   0% { transform: scale(1); }
   100% { transform: scale(1.1); }
 }
+/* Light Theme Variables */
+[data-theme="light"] {
+  --dark: #f0f0f0;
+  --light: #0a0a1a;
+  --glass: rgba(0, 0, 0, 0.05);
+  --primary: #0066cc;
+  --secondary: #cc00ff;
+}
+
+/* Dark Theme Variables */
+[data-theme="dark"] {
+  --dark: #0a0a1a;
+  --light: #f0f0f0;
+  --glass: rgba(255, 255, 255, 0.05);
+  --primary: #00f7ff;
+  --secondary: #ff00e4;
+}
+
+/* Neon Text for Dark Theme Only */
+[data-theme="dark"] .neon-text {
+  text-shadow: 0 0 5px var(--primary), 
+               0 0 10px var(--primary), 
+               0 0 20px var(--primary);
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px var(--primary), 
+                 0 0 10px var(--primary), 
+                 0 0 20px var(--primary);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
