@@ -4,136 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity Timer | Steven Emad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="timer-studying.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-
-    <!-- Main Container -->
-    <main class="timer-container">
-        <!-- Timer Header -->
-        <header class="timer-header">
-            <h1>Productivity Timer</h1>
-            <button id="theme-toggle" class="theme-btn">
-                <i class="fas fa-moon"></i>
-            </button>
-        </header>
-
+    <div class="timer-app">
         <!-- Timer Display -->
         <div class="timer-display">
-            <div class="timer-time" id="timer-display">25:00</div>
-            <div class="timer-progress">
-                <div class="progress-bar"></div>
+            <div id="timer-display">50:00</div>
+            <button id="start-timer" class="timer-btn">START</button>
+        </div>
+
+        <!-- Current Task -->
+        <div class="current-task">
+            <div class="task-number">#2</div>
+            <div class="task-name">finish 50 minute, physics lecture</div>
+        </div>
+
+        <!-- Tasks List -->
+        <div class="tasks-section">
+            <h3>Tasks</h3>
+            <ul id="task-list">
+                <li class="task-item">
+                    <input type="checkbox" id="task1">
+                    <label for="task1">
+                        <span class="task-text">finish 50 minute, physics lecture</span>
+                        <span class="task-progress">2/1</span>
+                    </label>
+                </li>
+                <li class="task-item">
+                    <input type="checkbox" id="task2">
+                    <label for="task2">
+                        <span class="task-text">finish 50 minute, physics lecture (2)</span>
+                        <span class="task-progress">0/1</span>
+                    </label>
+                </li>
+            </ul>
+            <div class="add-task">
+                <input type="text" id="new-task" placeholder="Add Task">
+                <button id="add-task">+</button>
             </div>
         </div>
-        
-        <!-- Timer Controls -->
-        <div class="timer-controls">
-            <div class="timer-modes">
-                <button class="timer-mode active" data-mode="pomodoro">
-                    <i class="fas fa-clock"></i> Pomodoro
-                </button>
-                <button class="timer-mode" data-mode="short-break">
-                    <i class="fas fa-coffee"></i> Short Break
-                </button>
-                <button class="timer-mode" data-mode="long-break">
-                    <i class="fas fa-umbrella-beach"></i> Long Break
-                </button>
-            </div>
-            
-            <div class="timer-buttons">
-                <button id="start-timer" class="btn btn-primary">
-                    <i class="fas fa-play"></i> Start
-                </button>
-                <button id="pause-timer" class="btn btn-outline">
-                    <i class="fas fa-pause"></i> Pause
-                </button>
-                <button id="reset-timer" class="btn btn-outline">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
-                <button id="settings-btn" class="btn btn-outline">
-                    <i class="fas fa-cog"></i> Settings
-                </button>
-            </div>
-        </div>
-        
-        <!-- Tasks Section -->
-        <div class="tasks-container">
-            <h2><i class="fas fa-tasks"></i> Tasks</h2>
-            <div class="task-input">
-                <input type="text" id="new-task" placeholder="Add a new task...">
-                <button id="add-task" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> Add
-                </button>
-            </div>
-            <ul id="task-list"></ul>
-        </div>
-    </main>
-    
-    <!-- Settings Modal -->
-    <div id="settings-modal" class="modal">
-        <div class="modal-content glass-card">
-            <div class="modal-header">
-                <h3><i class="fas fa-cog"></i> Timer Settings</h3>
-                <span class="close-modal">&times;</span>
-            </div>
-            
-            <div class="setting-group">
-                <h4>Timer Duration (minutes)</h4>
-                <div class="duration-settings">
-                    <div class="duration-input">
-                        <label for="pomodoro-duration">Pomodoro</label>
-                        <input type="number" id="pomodoro-duration" min="1" max="120" value="25">
-                    </div>
-                    <div class="duration-input">
-                        <label for="short-break-duration">Short Break</label>
-                        <input type="number" id="short-break-duration" min="1" max="30" value="5">
-                    </div>
-                    <div class="duration-input">
-                        <label for="long-break-duration">Long Break</label>
-                        <input type="number" id="long-break-duration" min="1" max="60" value="15">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="setting-group">
-                <h4>Auto Start</h4>
-                <div class="checkbox-setting">
-                    <input type="checkbox" id="auto-start-breaks" checked>
-                    <label for="auto-start-breaks">Auto Start Breaks</label>
-                </div>
-                <div class="checkbox-setting">
-                    <input type="checkbox" id="auto-start-pomodoros">
-                    <label for="auto-start-pomodoros">Auto Start Pomodoros</label>
-                </div>
-            </div>
-            
-            <div class="setting-group">
-                <h4>Long Break Interval</h4>
-                <div class="range-input">
-                    <input type="range" id="long-break-interval" min="1" max="10" value="4">
-                    <span id="interval-value">4</span>
-                </div>
-            </div>
-            
-            <div class="setting-group">
-                <h4>Task Settings</h4>
-                <div class="checkbox-setting">
-                    <input type="checkbox" id="auto-check-tasks">
-                    <label for="auto-check-tasks">Auto Check Completed Tasks</label>
-                </div>
-                <div class="checkbox-setting">
-                    <input type="checkbox" id="auto-switch-tasks" checked>
-                    <label for="auto-switch-tasks">Auto Switch to Next Task</label>
-                </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button id="save-settings" class="btn btn-primary">Save Settings</button>
-            </div>
+
+        <!-- Timer Modes (Hidden by default) -->
+        <div class="timer-modes">
+            <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
+            <button class="mode-btn" data-mode="short-break">Short Break</button>
+            <button class="mode-btn" data-mode="long-break">Long Break</button>
         </div>
     </div>
 
