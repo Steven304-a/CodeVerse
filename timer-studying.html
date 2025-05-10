@@ -1,56 +1,114 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="pomodoro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productivity Timer | Steven Emad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Productivity Timer | CodeVerse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="timer-studying.css">
 </head>
 <body>
-    <div class="timer-app">
+    <div class="timer-container">
         <!-- Timer Display -->
         <div class="timer-display">
-            <div id="timer-display">50:00</div>
-            <button id="start-timer" class="timer-btn">START</button>
+            <div id="timer">50:00</div>
+            <button id="timer-control" class="timer-btn">START</button>
         </div>
 
         <!-- Current Task -->
         <div class="current-task">
-            <div class="task-number">#2</div>
-            <div class="task-name">finish 50 minute, physics lecture</div>
+            <span id="task-number">#1</span>
+            <span id="current-task-name">No current task</span>
         </div>
 
-        <!-- Tasks List -->
+        <!-- Tasks Section -->
         <div class="tasks-section">
             <h3>Tasks</h3>
-            <ul id="task-list">
-                <li class="task-item">
-                    <input type="checkbox" id="task1">
-                    <label for="task1">
-                        <span class="task-text">finish 50 minute, physics lecture</span>
-                        <span class="task-progress">2/1</span>
-                    </label>
-                </li>
-                <li class="task-item">
-                    <input type="checkbox" id="task2">
-                    <label for="task2">
-                        <span class="task-text">finish 50 minute, physics lecture (2)</span>
-                        <span class="task-progress">0/1</span>
-                    </label>
-                </li>
+            <ul id="tasks-list">
+                <!-- Tasks will be added here dynamically -->
             </ul>
             <div class="add-task">
-                <input type="text" id="new-task" placeholder="Add Task">
-                <button id="add-task">+</button>
+                <input type="text" id="new-task-input" placeholder="Add Task">
+                <button id="add-task-btn">+</button>
             </div>
         </div>
 
-        <!-- Timer Modes (Hidden by default) -->
-        <div class="timer-modes">
-            <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
-            <button class="mode-btn" data-mode="short-break">Short Break</button>
-            <button class="mode-btn" data-mode="long-break">Long Break</button>
+        <!-- Settings Button -->
+        <button id="settings-btn" class="settings-btn">
+            <i class="fas fa-cog"></i>
+        </button>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Timer Settings</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <h4>Durations (minutes)</h4>
+                        <div class="duration-setting">
+                            <label>Pomodoro</label>
+                            <input type="number" id="pomodoro-duration" min="1" max="120" value="50">
+                        </div>
+                        <div class="duration-setting">
+                            <label>Short Break</label>
+                            <input type="number" id="short-break-duration" min="1" max="30" value="10">
+                        </div>
+                        <div class="duration-setting">
+                            <label>Long Break</label>
+                            <input type="number" id="long-break-duration" min="1" max="60" value="15">
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h4>Auto Start</h4>
+                        <div class="checkbox-setting">
+                            <input type="checkbox" id="auto-start-breaks" checked>
+                            <label for="auto-start-breaks">Breaks</label>
+                        </div>
+                        <div class="checkbox-setting">
+                            <input type="checkbox" id="auto-start-pomodoros">
+                            <label for="auto-start-pomodoros">Pomodoros</label>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <h4>Long Break Interval</h4>
+                        <div class="range-setting">
+                            <input type="range" id="long-break-interval" min="1" max="10" value="4">
+                            <span id="interval-value">4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-settings" class="save-btn">SAVE</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Task Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Task</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Task Name</label>
+                        <input type="text" id="edit-task-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Pomodoros</label>
+                        <input type="number" id="edit-task-pomodoros" min="1" value="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="save-task" class="save-btn">SAVE</button>
+                    <button id="delete-task" class="delete-btn">DELETE</button>
+                </div>
+            </div>
         </div>
     </div>
 
