@@ -12,19 +12,17 @@
     <!-- Animated Background -->
     <div class="animated-bg"></div>
 
-    <!-- Header -->
-    <header class="glass-card">
-        <div class="logo-container">
-            <a href="index.html" class="logo-link" aria-label="Back to Portfolio">
-                <img src="logo.jpg" alt="Steven Emad Logo" class="logo-image">
-            </a>
-        </div>
-        <h1>Productivity Timer</h1>
-        <button id="theme-toggle"><i class="fas fa-moon"></i></button>
-    </header>
+    <!-- Main Container -->
+    <main class="timer-container">
+        <!-- Timer Header -->
+        <header class="timer-header">
+            <h1>Productivity Timer</h1>
+            <button id="theme-toggle" class="theme-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
 
-    <!-- Main Timer Container -->
-    <main class="timer-app">
+        <!-- Timer Display -->
         <div class="timer-display">
             <div class="timer-time" id="timer-display">25:00</div>
             <div class="timer-progress">
@@ -32,28 +30,35 @@
             </div>
         </div>
         
-        <div class="timer-modes">
-            <button class="timer-mode active" data-mode="pomodoro">Pomodoro</button>
-            <button class="timer-mode" data-mode="short-break">Short Break</button>
-            <button class="timer-mode" data-mode="long-break">Long Break</button>
-        </div>
-        
+        <!-- Timer Controls -->
         <div class="timer-controls">
-            <button id="start-timer" class="btn btn-primary">
-                <i class="fas fa-play"></i> Start
-            </button>
-            <button id="pause-timer" class="btn btn-outline">
-                <i class="fas fa-pause"></i> Pause
-            </button>
-            <button id="reset-timer" class="btn btn-outline">
-                <i class="fas fa-redo"></i> Reset
-            </button>
+            <div class="timer-modes">
+                <button class="timer-mode active" data-mode="pomodoro">
+                    <i class="fas fa-clock"></i> Pomodoro
+                </button>
+                <button class="timer-mode" data-mode="short-break">
+                    <i class="fas fa-coffee"></i> Short Break
+                </button>
+                <button class="timer-mode" data-mode="long-break">
+                    <i class="fas fa-umbrella-beach"></i> Long Break
+                </button>
+            </div>
+            
+            <div class="timer-buttons">
+                <button id="start-timer" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button id="pause-timer" class="btn btn-outline">
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="reset-timer" class="btn btn-outline">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+                <button id="settings-btn" class="btn btn-outline">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </div>
         </div>
-        
-        <!-- Settings Button -->
-        <button id="settings-btn" class="btn btn-outline settings-btn">
-            <i class="fas fa-cog"></i> Settings
-        </button>
         
         <!-- Tasks Section -->
         <div class="tasks-container">
