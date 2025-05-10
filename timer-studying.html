@@ -1,91 +1,137 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="pomodoro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productivity Timer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="timer-studying.css">
+    <title>Pomodoro Timer | CodeVerse</title>
+    <link rel="stylesheet" href="time-studying.css">
+    <link rel="icon" href="https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/clock-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header with Mode Toggle -->
-        <header class="app-header">
-            <div class="mode-selector">
-                <button class="mode-btn active" data-mode="pomodoro">
-                    <i class="fas fa-clock"></i>
-                    <span>Focus</span>
-                </button>
-                <button class="mode-btn" data-mode="short-break">
-                    <i class="fas fa-coffee"></i>
-                    <span>Short Break</span>
-                </button>
-                <button class="mode-btn" data-mode="long-break">
-                    <i class="fas fa-umbrella-beach"></i>
-                    <span>Long Break</span>
-                </button>
-            </div>
-            <button id="settings-btn" class="icon-btn">
-                <i class="fas fa-cog"></i>
-            </button>
+    <div class="container glass animate-fade-in">
+        <header class="animate-fade-in">
+            <h1>⏱ Pomodoro Timer</h1>
+            <nav class="timer-types">
+                <button class="timer-type-btn active" data-type="study" aria-label="Pomodoro">Study</button>
+                <button class="timer-type-btn" data-type="short-break" aria-label="Short Break">Short Break</button>
+                <button class="timer-type-btn" data-type="long-break" aria-label="Long Break">Long Break</button>
+            </nav>
+            <button id="settings-btn" class="settings-btn" aria-label="Settings"><i class="fas fa-cog"></i></button>
         </header>
 
-        <!-- Main Timer Display -->
-        <main class="timer-container">
-            <div class="timer-display">
-                <div id="timer" class="time-display">50:00</div>
-                <button id="timer-control" class="timer-btn pulse-animation">
-                    <i class="fas fa-play"></i>
-                    <span>START</span>
-                </button>
+        <main>
+            <div class="timer-container animate-slide-up">
+                <div class="progress-ring">
+                    <svg width="160" height="160">
+                        <circle class="progress-ring__circle-bg" cx="80" cy="80" r="70" />
+                        <circle class="progress-ring__circle" cx="80" cy="80" r="70" />
+                    </svg>
+                    <div class="timer-display" aria-live="polite">25:00</div>
+                </div>
+                <div class="timer-controls">
+                    <button id="start-btn" class="control-btn" aria-label="Start">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="pause-btn" class="control-btn" aria-label="Pause" disabled>
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button id="reset-btn" class="control-btn" aria-label="Reset">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
             </div>
 
-            <!-- Current Task -->
-            <div class="current-task">
-                <span class="task-badge">#1</span>
-                <span class="task-name">No current task</span>
-            </div>
-
-            <!-- Progress Indicator -->
-            <div class="progress-container">
-                <div class="progress-bar"></div>
+            <div class="tasks-container animate-slide-up">
+                <h2>Tasks</h2>
+                <div class="add-task">
+                    <input type="text" id="task-input" placeholder="Add a new task..." class="modern-input" aria-label="Add new task">
+                    <button id="add-task-btn" class="modern-btn" aria-label="Add Task">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+                <div class="tasks-progress-bar">
+                    <div class="tasks-progress"></div>
+                </div>
+                <ul id="tasks-list" class="tasks-list" aria-label="Task List"></ul>
             </div>
         </main>
 
-        <!-- Tasks Section -->
-        <section class="tasks-section">
-            <div class="section-header">
-                <h3><i class="fas fa-tasks"></i> Tasks</h3>
-                <span class="tasks-count">0</span>
+        <footer class="animate-fade-in">
+            <p>Pomodoro Focus Timer - &copy; 2024 codeverse.icu</p>
+        </footer>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <div class="settings-content glass animate-slide-up">
+            <div class="settings-header">
+                <span id="settings-title">SETTINGS</span>
+                <button id="close-settings" class="close-settings" aria-label="Close"><i class="fas fa-times"></i></button>
             </div>
-            
-            <ul id="tasks-list" class="tasks-list">
-                <!-- Tasks will be added here dynamically -->
-            </ul>
-            
-            <div class="add-task-container">
-                <input type="text" id="new-task-input" placeholder="Add new task..." class="task-input">
-                <button id="add-task-btn" class="add-btn">
-                    <i class="fas fa-plus"></i>
-                </button>
+            <div class="settings-section">
+                <div class="settings-title"><i class="fas fa-clock"></i> TIMER</div>
+                <div class="settings-row">
+                    <label>Time (minutes)</label>
+                    <div class="settings-time-inputs">
+                        <div><span>Pomodoro</span><input type="number" id="pomodoro-time" min="1" step="0.1" value="25"></div>
+                        <div><span>Short Break</span><input type="number" id="short-break-time" min="1" step="1" value="5"></div>
+                        <div><span>Long Break</span><input type="number" id="long-break-time" min="1" step="1" value="15"></div>
+                    </div>
+                </div>
+                <div class="settings-row">
+                    <label class="switch-label">Auto Start Breaks <input type="checkbox" id="auto-start-breaks"><span class="slider"></span></label>
+                </div>
+                <div class="settings-row">
+                    <label class="switch-label">Auto Start Pomodoros <input type="checkbox" id="auto-start-pomodoros"><span class="slider"></span></label>
+                </div>
+                <div class="settings-row">
+                    <label>Long Break interval <input type="number" id="long-break-interval" min="1" value="4"></label>
+                </div>
             </div>
-        </section>
-
-        <!-- Settings Modal -->
-        <div id="settings-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3><i class="fas fa-cog"></i> Timer Settings</h3>
-                    <button class="close-modal">&times;</button>
+            <hr>
+            <div class="settings-section">
+                <div class="settings-title"><i class="fas fa-tasks"></i> TASK</div>
+                <div class="settings-row">
+                    <label class="switch-label">Auto Check Tasks <input type="checkbox" id="auto-check-tasks"><span class="slider"></span></label>
                 </div>
-                <div class="modal-body">
-                    <!-- Settings content remains the same as before -->
+                <div class="settings-row">
+                    <label class="switch-label">Auto Switch Tasks <input type="checkbox" id="auto-switch-tasks"><span class="slider"></span></label>
                 </div>
+            </div>
+            <hr>
+            <div class="settings-section">
+                <div class="settings-title"><i class="fas fa-volume-up"></i> SOUND</div>
+                <div class="settings-row">
+                    <label>Alarm Sound
+                        <select id="alarm-sound-select">
+                            <option value="kitchen">Kitchen</option>
+                            <option value="bell">Bell</option>
+                            <option value="digital">Digital</option>
+                        </select>
+                    </label>
+                    <input type="range" id="alarm-volume" min="0" max="100" value="50">
+                </div>
+                <div class="settings-row">
+                    <label>Ticking Sound
+                        <select id="ticking-sound-select">
+                            <option value="none">None</option>
+                            <option value="classic">Classic</option>
+                            <option value="modern">Modern</option>
+                        </select>
+                    </label>
+                    <input type="range" id="ticking-volume" min="0" max="100" value="50">
+                </div>
+            </div>
+            <div class="settings-actions">
+                <button id="save-settings-btn" class="modern-btn" style="width:48%;margin-top:1rem;">Save Settings</button>
+                <button id="cancel-settings-btn" class="modern-btn secondary" style="width:48%;margin-top:1rem;">Cancel</button>
             </div>
         </div>
     </div>
-
-    <script src="timer-studying.js"></script>
+    
+    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
+    <script src="time-studying.js"></script>
 </body>
 </html>
