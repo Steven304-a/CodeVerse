@@ -540,3 +540,14 @@ window.addEventListener('DOMContentLoaded', () => {
         if (autoStart) startTimer(true);
     }
 });
+
+// التحقق من التحديثات كل 5 دقائق
+setInterval(() => {
+  fetch(window.location.href, { cache: "no-store" })
+    .then(response => response.text())
+    .then(content => {
+      if (!content.includes(document.querySelector('script').innerText)) {
+        window.location.reload(true);
+      }
+    });
+}, 300000); // 5 دقائق
