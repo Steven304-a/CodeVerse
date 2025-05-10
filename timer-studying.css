@@ -22,71 +22,83 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
 }
 
-h1, h2, h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-/* Glassmorphism Effect */
-.glass-card {
+/* Main Timer Container */
+.timer-container {
+  width: 100%;
+  max-width: 600px;
   background: var(--glass);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 247, 255, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 247, 255, 0.1);
+  overflow: hidden;
+  margin-top: 30px;
 }
 
-/* Header Styles */
-header {
+/* Timer Header */
+.timer-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 5%;
-  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-header h1 {
+.timer-header h1 {
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.8rem;
   background: linear-gradient(45deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  letter-spacing: 1px;
 }
 
-/* Timer App Layout */
-.timer-app {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 0 20px;
-  flex-grow: 1;
+.theme-btn {
+  background: transparent;
+  border: none;
+  color: var(--light);
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(30deg);
 }
 
 /* Timer Display */
 .timer-display {
+  padding: 30px 20px;
   text-align: center;
-  margin-bottom: 30px;
+  position: relative;
 }
 
 .timer-time {
   font-size: 5rem;
   font-family: 'Orbitron', sans-serif;
-  margin: 20px 0;
+  margin: 10px 0;
   color: var(--primary);
-  text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+  text-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+  letter-spacing: 2px;
 }
 
 .timer-progress {
-  height: 5px;
+  height: 6px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
+  border-radius: 3px;
   margin-top: 20px;
   overflow: hidden;
 }
@@ -98,17 +110,21 @@ header h1 {
   transition: width 0.1s linear;
 }
 
-/* Timer Modes */
+/* Timer Controls */
+.timer-controls {
+  padding: 0 20px 20px;
+}
+
 .timer-modes {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .timer-modes button {
-  padding: 8px 15px;
-  border-radius: 20px;
+  padding: 10px 15px;
+  border-radius: 30px;
   background: transparent;
   border: 1px solid var(--primary);
   color: var(--light);
@@ -116,24 +132,28 @@ header h1 {
   transition: all 0.3s ease;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
 }
 
 .timer-modes button.active {
   background: var(--primary);
   color: var(--dark);
   font-weight: bold;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
 }
 
 .timer-modes button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* Timer Controls */
-.timer-controls {
+.timer-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* Buttons */
@@ -141,7 +161,7 @@ header h1 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 25px;
+  padding: 12px 20px;
   border-radius: 30px;
   font-weight: 700;
   text-transform: uppercase;
@@ -170,17 +190,10 @@ header h1 {
   box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
 }
 
-.settings-btn {
-  margin: 0 auto 30px;
-  display: block;
-}
-
 /* Tasks Section */
 .tasks-container {
-  background: var(--glass);
-  border-radius: 10px;
   padding: 20px;
-  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tasks-container h2 {
@@ -189,6 +202,7 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
+  color: var(--primary);
 }
 
 .task-input {
@@ -378,26 +392,6 @@ header h1 {
   100% { transform: scale(1.1); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .timer-time {
-    font-size: 3.5rem;
-  }
-  
-  .duration-settings {
-    grid-template-columns: 1fr;
-  }
-  
-  .timer-controls {
-    flex-wrap: wrap;
-  }
-  
-  .btn {
-    padding: 10px 15px;
-    font-size: 0.8rem;
-  }
-}
-
 /* Light Theme */
 [data-theme="light"] {
   --dark: #f0f0f0;
@@ -407,6 +401,58 @@ header h1 {
   --secondary: #cc00ff;
 }
 
-[data-theme="light"] .glass-card {
-  box-shadow: 0 8px 32px 0 rgba(0, 102, 204, 0.1);
+[data-theme="light"] .timer-container {
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1);
+}
+
+[data-theme="light"] .timer-time {
+  text-shadow: 0 0 15px rgba(0, 102, 204, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .timer-time {
+    font-size: 3.5rem;
+  }
+  
+  .timer-modes {
+    flex-wrap: wrap;
+  }
+  
+  .timer-modes button {
+    flex-grow: 1;
+    justify-content: center;
+  }
+  
+  .timer-buttons {
+    gap: 8px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .duration-settings {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-time {
+    font-size: 2.8rem;
+  }
+  
+  .timer-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .timer-buttons {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
